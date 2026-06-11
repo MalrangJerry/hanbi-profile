@@ -96,3 +96,6 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 - 팬 이름 설명 삭제
 - 일정 탭 캘린더 제목/ICS 상태 배지 삭제
 - 이벤트 범례 점 크기 고정 및 캘린더 가독성 개선
+
+# 마지막 수정
+- 한비 탄생일 날짜를 2024년 5월 15일로 변경
