@@ -1035,6 +1035,117 @@
 
       .calendar-frame { height: 620px; }
     }
+  
+    /* final requested tweaks */
+    .profile-label {
+      font-size: 13px !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+    }
+
+    .mini-card .icon {
+      display: none !important;
+    }
+
+    .mini-card {
+      text-align: left !important;
+      padding: 20px 18px !important;
+    }
+
+    .mini-card strong {
+      font-size: 20px !important;
+      letter-spacing: -0.04em !important;
+      margin-bottom: 8px !important;
+    }
+
+    .mini-card span {
+      font-size: 15.5px !important;
+      line-height: 1.68 !important;
+    }
+
+    .meme-number {
+      display: block;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", "Pretendard", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      color: #43addc;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 0 rgba(255,255,255,.84);
+    }
+
+    .legend-item.featured-event {
+      padding: 6px 10px !important;
+    }
+
+    .legend-dot.event {
+      width: 9px !important;
+      height: 9px !important;
+      background: #ff6f9b !important;
+    }
+
+    .event-chip {
+      padding: 5px 7px !important;
+      font-size: 11px !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .event-chip .event-time {
+      display: inline-block;
+      margin-right: 3px;
+      opacity: .92;
+      font-size: 10px;
+    }
+
+    .event-chip.no-time .event-time {
+      display: none;
+    }
+
+    .event-chip.no-time {
+      font-size: 11.5px !important;
+    }
+
+    @media (max-width: 720px) {
+      .mini-card strong {
+        font-size: 19px !important;
+      }
+      .mini-card span {
+        font-size: 15px !important;
+      }
+    }
+
+  
+    .calendar-legend {
+      gap: 7px !important;
+    }
+    .legend-item {
+      padding: 7px 11px !important;
+    }
+    .calendar-grid-custom {
+      gap: 8px !important;
+    }
+    .day-cell {
+      min-height: 118px !important;
+      padding: 9px 8px !important;
+    }
+    .event-chip {
+      max-width: 100%;
+      border-radius: 10px !important;
+    }
+    .event-chip.break {
+      background: #70757c !important;
+    }
+    .event-chip.event {
+      background: #f06b9a !important;
+    }
+    .event-chip.broadcast {
+      background: #55c49d !important;
+    }
+    .event-chip.other {
+      background: #6ba8e8 !important;
+    }
+
   </style>
 </head>
 <body>
@@ -1052,7 +1163,7 @@
       <div class="hero-text">
         <div class="badge">📅 한비 방송 일정</div>
         <h1>일정</h1>
-        <p class="subtitle">구글 캘린더 일정 데이터를 읽어 파스텔톤 캘린더와 UPCOMING 카드로 보여줘요.</p>
+        <p class="subtitle"></p>
       </div>
     </section>
 
@@ -1078,7 +1189,7 @@
         <div class="calendar-legend">
           <span class="legend-item"><span class="legend-dot broadcast"></span>방송</span>
           <span class="legend-item"><span class="legend-dot break"></span>휴방</span>
-          <span class="legend-item"><span class="legend-dot event"></span>이벤트</span>
+          <span class="legend-item featured-event"><span class="legend-dot event"></span>이벤트</span>
           <span class="legend-item"><span class="legend-dot other"></span>기타</span>
         </div>
 
@@ -1153,8 +1264,9 @@
         const d = new Date(iso);
         const date = `${d.getMonth()+1}/${d.getDate()}`;
         const days = ["일", "월", "화", "수", "목", "금", "토"];
+        const isMidnight = d.getHours() === 0 && d.getMinutes() === 0;
         const time = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-        return `${date} (${days[d.getDay()]}) · ${time}`;
+        return isMidnight ? `${date} (${days[d.getDay()]})` : `${date} (${days[d.getDay()]}) · ${time}`;
       }
 
       function monthRange(year, month) {
@@ -1226,7 +1338,11 @@
             chip.className = `event-chip ${type}`;
             const d = new Date(ev.start);
             chip.title = ev.summary;
-            chip.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())} ${ev.summary}`;
+            const isMidnight = d.getHours() === 0 && d.getMinutes() === 0;
+            chip.classList.toggle("no-time", isMidnight);
+            chip.innerHTML = isMidnight
+              ? `<span class="event-title">${ev.summary}</span>`
+              : `<span class="event-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span><span class="event-title">${ev.summary}</span>`;
             div.appendChild(chip);
           });
 

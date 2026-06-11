@@ -711,6 +711,86 @@
       .calendar-frame { height: 620px; }
       .upcoming-frame { height: 420px; }
     }
+  
+    /* final requested tweaks */
+    .profile-label {
+      font-size: 13px !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+    }
+
+    .mini-card .icon {
+      display: none !important;
+    }
+
+    .mini-card {
+      text-align: left !important;
+      padding: 20px 18px !important;
+    }
+
+    .mini-card strong {
+      font-size: 20px !important;
+      letter-spacing: -0.04em !important;
+      margin-bottom: 8px !important;
+    }
+
+    .mini-card span {
+      font-size: 15.5px !important;
+      line-height: 1.68 !important;
+    }
+
+    .meme-number {
+      display: block;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", "Pretendard", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      color: #43addc;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 0 rgba(255,255,255,.84);
+    }
+
+    .legend-item.featured-event {
+      padding: 6px 10px !important;
+    }
+
+    .legend-dot.event {
+      width: 9px !important;
+      height: 9px !important;
+      background: #ff6f9b !important;
+    }
+
+    .event-chip {
+      padding: 5px 7px !important;
+      font-size: 11px !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .event-chip .event-time {
+      display: inline-block;
+      margin-right: 3px;
+      opacity: .92;
+      font-size: 10px;
+    }
+
+    .event-chip.no-time .event-time {
+      display: none;
+    }
+
+    .event-chip.no-time {
+      font-size: 11.5px !important;
+    }
+
+    @media (max-width: 720px) {
+      .mini-card strong {
+        font-size: 19px !important;
+      }
+      .mini-card span {
+        font-size: 15px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -732,7 +812,7 @@
         <div class="badge">☁️ 하늘에서 내려온 버추얼 스트리머</div>
         <h1>한비</h1>
         <p class="subtitle">
-          느릿하고 잘 먹는 코맹맹이 하늘 밥풀이. 오늘도 한끼들을 보러 구름 위에서 내려왔어요.
+          느릿하고 잘 먹는 코맹맹이 하늘.<br>오늘도 한끼들을 보러 구름 위에서 내려왔어요.
         </p>
       </div>
     </section>
@@ -745,32 +825,32 @@
 
       <div class="profile-grid">
         <div class="profile-card">
-          <div class="profile-label">NAME</div>
+          <div class="profile-label">이름</div>
           <div class="profile-value">한비</div>
         </div>
 
         <div class="profile-card">
-          <div class="profile-label">AGE</div>
+          <div class="profile-label">나이</div>
           <div class="profile-value">2살 <span class="profile-sub">생일마다 1살씩 먹음</span></div>
         </div>
 
         <div class="profile-card">
-          <div class="profile-label">BIRTHDAY</div>
+          <div class="profile-label">생일</div>
           <div class="profile-value">24.05.15 <span class="profile-sub">한비 탄생일</span></div>
         </div>
 
         <div class="profile-card">
-          <div class="profile-label">FEATURE</div>
+          <div class="profile-label">특징</div>
           <div class="profile-value">느릿함 · 잘 먹음 <span class="profile-sub">코맹맹이</span></div>
         </div>
 
         <div class="profile-card split-card">
           <div class="split-item">
-            <div class="profile-label">EMOJI</div>
+            <div class="profile-label">대표 이모지</div>
             <div class="split-big">☁️</div>
           </div>
           <div class="split-item">
-            <div class="profile-label">COLOR</div>
+            <div class="profile-label">대표 색</div>
             <div class="split-big">🩵 하늘색</div>
             <span class="profile-sub">파스텔톤</span>
           </div>
@@ -815,7 +895,7 @@
 
       <div class="cards">
         <div class="mini-card">
-          <div class="icon">2222</div>
+          <span class="meme-number">2222</span>
           <strong>한비 울음 소리</strong>
           <span>한비가 우는 소리</span>
         </div>

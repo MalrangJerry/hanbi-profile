@@ -711,6 +711,86 @@
       .calendar-frame { height: 620px; }
       .upcoming-frame { height: 420px; }
     }
+  
+    /* final requested tweaks */
+    .profile-label {
+      font-size: 13px !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+    }
+
+    .mini-card .icon {
+      display: none !important;
+    }
+
+    .mini-card {
+      text-align: left !important;
+      padding: 20px 18px !important;
+    }
+
+    .mini-card strong {
+      font-size: 20px !important;
+      letter-spacing: -0.04em !important;
+      margin-bottom: 8px !important;
+    }
+
+    .mini-card span {
+      font-size: 15.5px !important;
+      line-height: 1.68 !important;
+    }
+
+    .meme-number {
+      display: block;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", "Pretendard", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      color: #43addc;
+      line-height: 1.05;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 0 rgba(255,255,255,.84);
+    }
+
+    .legend-item.featured-event {
+      padding: 6px 10px !important;
+    }
+
+    .legend-dot.event {
+      width: 9px !important;
+      height: 9px !important;
+      background: #ff6f9b !important;
+    }
+
+    .event-chip {
+      padding: 5px 7px !important;
+      font-size: 11px !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .event-chip .event-time {
+      display: inline-block;
+      margin-right: 3px;
+      opacity: .92;
+      font-size: 10px;
+    }
+
+    .event-chip.no-time .event-time {
+      display: none;
+    }
+
+    .event-chip.no-time {
+      font-size: 11.5px !important;
+    }
+
+    @media (max-width: 720px) {
+      .mini-card strong {
+        font-size: 19px !important;
+      }
+      .mini-card span {
+        font-size: 15px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -728,7 +808,7 @@
       <div class="hero-text">
         <div class="badge">📺 오후 12시 LIVE</div>
         <h1>방송 정보</h1>
-        <p class="subtitle">소통과 게임으로 한끼들과 함께하는 한비의 하늘 방송.</p>
+        <p class="subtitle">소통과 게임으로 한끼들과 함께하는 한비의 방송.</p>
       </div>
     </section>
 
@@ -742,13 +822,12 @@
         <div class="info"><div class="label">방송 시간</div><div class="value">오후 12시</div></div>
         <div class="info"><div class="label">방송 내용</div><div class="value">소통, 게임</div></div>
         <div class="info"><div class="label">인사</div><div class="value">한하, 한바</div></div>
-        <div class="info"><div class="label">팬 이름</div><div class="value">한끼</div></div>
+        <div class="info"><div class="label">팬 이름</div><div class="value">한끼<span class="profile-sub">작아보이지만 알고 보면 2m나 되는 초 대형 밥풀이며 먹어도 다음날 재생 됨</span></div></div>
         <div class="info"><div class="label">팬 닉</div><div class="value">1, [1]<br>ex. 1한비, [1]한비</div></div>
-        <div class="info"><div class="label">팬 설정</div><div class="value">초 대형 밥풀이</div></div>
       </div>
 
       <div class="section-title" style="margin-top:18px; margin-bottom:12px;">
-        <h2 style="font-size:22px;">🍚 한끼란?</h2>
+        <h2 style="font-size:22px;">한끼란?</h2>
       </div>
       <div class="cards">
         <div class="mini-card"><div class="icon">🍚</div><strong>초 대형 밥풀이</strong><span>작아보이지만<br>알고 보면 2m</span></div>
