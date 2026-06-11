@@ -931,6 +931,35 @@
       }
     }
 
+  
+    .section-title:has(.pill:empty) .pill {
+      display: none !important;
+    }
+
+    .meme-card-left {
+      text-align: left !important;
+    }
+
+    .meme-card-left .meme-number {
+      text-align: left !important;
+      display: block !important;
+      font-size: 42px !important;
+      line-height: 1 !important;
+      margin-bottom: 8px !important;
+      color: #43addc !important;
+    }
+
+    .meme-card-left strong {
+      text-align: left !important;
+      color: var(--text) !important;
+      font-size: 17px !important;
+      font-weight: 850 !important;
+    }
+
+    .meme-card-left span:not(.meme-number) {
+      text-align: left !important;
+    }
+
   </style>
 </head>
 <body>
@@ -960,7 +989,7 @@
     <section class="section">
       <div class="section-title">
         <h2>☁️ 프로필 ☁️</h2>
-        <span class="pill">Hanbi Profile</span>
+        
       </div>
 
       <div class="profile-grid">
@@ -975,13 +1004,13 @@
         </div>
 
         <div class="profile-card">
-          <div class="profile-label">생일</div>
-          <div class="profile-value">24.05.15 <span class="profile-sub">한비 탄생일</span></div>
+          <div class="profile-label">한비 탄생일</div>
+          <div class="profile-value">24.05.15</div>
         </div>
 
         <div class="profile-card">
           <div class="profile-label">특징</div>
-          <div class="profile-value">느릿함 · 잘 먹음 <span class="profile-sub">코맹맹이</span></div>
+          <div class="profile-value">느릿함 · 잘 먹음 · 코맹맹이</div>
         </div>
 
         <div class="profile-card split-card">
@@ -1013,7 +1042,7 @@
     <section class="section">
       <div class="section-title">
         <h2>☁️ RP ☁️</h2>
-        <span class="pill">하늘</span>
+        
       </div>
 
       <div class="rp-wrap">
@@ -1040,7 +1069,7 @@
       </div>
 
       <div class="cards">
-        <div class="mini-card meme-card">
+        <div class="mini-card meme-card meme-card-left">
           <span class="meme-number">2222</span>
           <strong>한비 울음 소리</strong>
           <span>한비가 우는 소리</span>

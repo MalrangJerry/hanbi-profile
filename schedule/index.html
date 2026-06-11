@@ -1446,6 +1446,123 @@
       }
     }
 
+  
+    /* schedule readability cleanup */
+    .section-title:empty {
+      display: none !important;
+    }
+
+    .section-title h2[style*="display:none"] {
+      display: none !important;
+    }
+
+    .section-title h2[style*="display:none"] + .pill {
+      display: none !important;
+    }
+
+    .custom-calendar-shell {
+      margin-top: 0 !important;
+      padding: 20px !important;
+      background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(240,251,255,.78)) !important;
+    }
+
+    .calendar-toolbar {
+      margin-bottom: 18px !important;
+    }
+
+    .calendar-title strong {
+      font-size: clamp(30px, 4.5vw, 40px) !important;
+      color: #2e5870 !important;
+    }
+
+    .calendar-title span {
+      display: none !important;
+    }
+
+    .calendar-legend {
+      gap: 8px !important;
+      margin-bottom: 16px !important;
+    }
+
+    .calendar-legend .legend-item {
+      padding: 7px 11px !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,.72) !important;
+      font-size: 12px !important;
+    }
+
+    .calendar-legend .legend-dot,
+    .calendar-legend .legend-dot.event,
+    .calendar-legend .legend-dot.broadcast,
+    .calendar-legend .legend-dot.break,
+    .calendar-legend .legend-dot.other {
+      width: 8px !important;
+      height: 8px !important;
+      min-width: 8px !important;
+      min-height: 8px !important;
+      max-width: 8px !important;
+      max-height: 8px !important;
+      border-radius: 50% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      flex: 0 0 8px !important;
+      display: inline-block !important;
+    }
+
+    .calendar-grid-custom {
+      gap: 8px !important;
+    }
+
+    .day-cell {
+      min-height: 112px !important;
+      padding: 10px 8px !important;
+      border-radius: 18px !important;
+      background: rgba(255,255,255,.74) !important;
+      border: 1px solid rgba(126,205,242,.23) !important;
+    }
+
+    .day-cell.today {
+      border-color: rgba(79,182,228,.85) !important;
+      box-shadow: inset 0 0 0 1px rgba(79,182,228,.38), 0 10px 18px rgba(70,166,215,.08) !important;
+    }
+
+    .day-number {
+      font-size: 14px !important;
+      margin-bottom: 8px !important;
+      color: #2e5870 !important;
+    }
+
+    .event-chip {
+      border-radius: 9px !important;
+      padding: 5px 7px !important;
+      font-size: 11.5px !important;
+      line-height: 1.25 !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,.06) !important;
+    }
+
+    .event-chip.no-time {
+      font-size: 12px !important;
+      padding: 5px 7px !important;
+    }
+
+    .schedule-badges {
+      margin-bottom: 20px !important;
+    }
+
+    @media (max-width: 720px) {
+      .custom-calendar-shell {
+        padding: 13px !important;
+      }
+      .day-cell {
+        min-height: 88px !important;
+        padding: 7px 5px !important;
+      }
+      .event-chip,
+      .event-chip.no-time {
+        font-size: 10px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1469,8 +1586,8 @@
 
     <section class="section">
       <div class="section-title">
-        <h2>📅 캘린더</h2>
-        <span class="pill" id="calendarSource">ICS 연동 시도 중</span>
+        <h2 style="display:none;">캘린더</h2>
+        
       </div>
 
       <div class="custom-calendar-shell" id="customCalendar">
@@ -1551,7 +1668,7 @@
       const upcomingList = document.getElementById("upcomingList");
       const monthTitle = document.getElementById("monthTitle");
       const monthSubtitle = document.getElementById("monthSubtitle");
-      const calendarSource = document.getElementById("calendarSource");
+      const calendarSource = null;
       const fallback = document.getElementById("calendarFallback");
 
       const today = new Date();
@@ -1749,20 +1866,20 @@
         const monthName = `${viewYear}년 ${viewMonth + 1}월`;
         monthTitle.textContent = monthName;
         monthSubtitle.textContent = "한비 방송 일정";
-        calendarSource.textContent = "ICS 연동 중";
+        
 
         try {
           const [monthEvents, upcoming] = await Promise.all([
             fetchEvents(viewYear, viewMonth),
             fetchUpcoming()
           ]);
-          calendarSource.textContent = "ICS 연동 성공";
+          
           fallback.classList.remove("active");
           renderCalendar(monthEvents);
           renderUpcoming(upcoming);
         } catch (err) {
           console.error(err);
-          calendarSource.textContent = "iframe 대체 표시";
+          
           calendarGrid.innerHTML = '<div class="calendar-status">커스텀 캘린더 연동에 실패했어요. 아래 Google Calendar iframe을 확인해주세요.</div>';
           fallback.classList.add("active");
           upcomingList.innerHTML = '<div class="calendar-status">UPCOMING 자동 연동에 실패했어요. 캘린더 공개 설정이 필요할 수 있어요.</div>';
