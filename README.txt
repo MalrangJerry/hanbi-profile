@@ -102,3 +102,6 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 - /calendar/ 주소 추가
 - 상단 탭과 히어로 제목 없이 캘린더 + UPCOMING만 표시
 - SOOP 일정 공지글 iframe에는 https://hanbi-profile.pages.dev/calendar/ 사용 권장
+
+# 캘린더 공지 전용 페이지 수정
+- 일~목/정기/금토 휴방 방송 시간 배지 제거
