@@ -108,3 +108,14 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 
 # 캘린더 공지 전용 페이지 수정
 - UPCOMING 섹션 제거, 캘린더만 표시
+
+
+# 멀티데이 일정 표시 수정
+- start 날짜에만 표시되던 긴 일정을 start~end 범위의 각 날짜에 표시하도록 수정
+- 여러 날 일정은 ↘ / → / ↗ 표시로 시작/진행/종료 구분
+
+
+# 캘린더 폭 확장
+- /calendar/ 전용 페이지 최대 폭을 1180px로 확장
+- 일정 칩 폰트/패딩 조정으로 텍스트 잘림 완화
+- SOOP iframe width는 1100~1180 권장

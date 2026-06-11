@@ -1563,6 +1563,22 @@
       }
     }
 
+  
+    .event-chip.multi-day {
+      background-image: linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,0)) !important;
+      border-radius: 8px !important;
+    }
+
+    .event-chip.multi-day .event-title {
+      font-weight: 950;
+    }
+
+  
+    /* schedule tab chip readability */
+    .event-chip {
+      letter-spacing: -0.04em !important;
+    }
+
   </style>
 </head>
 <body>
@@ -1677,6 +1693,53 @@
 
       const pad = (n) => String(n).padStart(2, "0");
       const ymd = (date) => `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+
+      function startOfLocalDay(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      }
+
+      function eventDayKeys(ev) {
+        const startDate = new Date(ev.start);
+        const endDateRaw = ev.end ? new Date(ev.end) : new Date(ev.start);
+        let startDay = startOfLocalDay(startDate);
+        let endDay = startOfLocalDay(endDateRaw);
+
+        // Google Calendar all-day/multi-day DTEND is often exclusive midnight.
+        // If the end is exactly 00:00 and later than start, show through the previous day.
+        if (
+          ev.end &&
+          endDateRaw.getHours() === 0 &&
+          endDateRaw.getMinutes() === 0 &&
+          endDateRaw.getSeconds() === 0 &&
+          endDay > startDay
+        ) {
+          endDay = new Date(endDay.getFullYear(), endDay.getMonth(), endDay.getDate() - 1);
+        }
+
+        const keys = [];
+        const cursor = new Date(startDay);
+        let guard = 0;
+        while (cursor <= endDay && guard < 120) {
+          keys.push(ymd(cursor));
+          cursor.setDate(cursor.getDate() + 1);
+          guard++;
+        }
+        return keys.length ? keys : [ymd(startDate)];
+      }
+
+      function isMultiDayEvent(ev) {
+        return eventDayKeys(ev).length > 1;
+      }
+
+      function eventLabelForDay(ev, key) {
+        const keys = eventDayKeys(ev);
+        if (keys.length <= 1) return ev.summary;
+        const first = keys[0];
+        const last = keys[keys.length - 1];
+        if (key === first) return `↘ ${ev.summary}`;
+        if (key === last) return `↗ ${ev.summary}`;
+        return `→ ${ev.summary}`;
+      }
 
       function eventType(summary = "") {
         const text = summary.toLowerCase();
@@ -1795,9 +1858,10 @@
 
         const byDay = new Map();
         for (const ev of events) {
-          const key = ymd(new Date(ev.start));
-          if (!byDay.has(key)) byDay.set(key, []);
-          byDay.get(key).push(ev);
+          for (const key of eventDayKeys(ev)) {
+            if (!byDay.has(key)) byDay.set(key, []);
+            byDay.get(key).push(ev);
+          }
         }
 
         for (const cell of cells) {
@@ -1813,12 +1877,15 @@
             const chip = document.createElement("span");
             chip.className = `event-chip ${type}`;
             const d = new Date(ev.start);
-            chip.title = ev.summary;
             const isMidnight = d.getHours() === 0 && d.getMinutes() === 0;
-            chip.classList.toggle("no-time", isMidnight);
-            chip.innerHTML = isMidnight
-              ? `<span class="event-title">${ev.summary}</span>`
-              : `<span class="event-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span><span class="event-title">${ev.summary}</span>`;
+            const multiDay = isMultiDayEvent(ev);
+            const label = eventLabelForDay(ev, key);
+            chip.title = multiDay ? `${ev.summary} · 여러 날 일정` : ev.summary;
+            chip.classList.toggle("no-time", isMidnight || multiDay);
+            chip.classList.toggle("multi-day", multiDay);
+            chip.innerHTML = (isMidnight || multiDay)
+              ? `<span class="event-title">${label}</span>`
+              : `<span class="event-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span><span class="event-title">${label}</span>`;
             chip.addEventListener("click", (e) => {
               e.stopPropagation();
               openEventModal(ev);
