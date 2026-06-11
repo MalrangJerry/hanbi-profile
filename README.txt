@@ -97,5 +97,8 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 - 일정 탭 캘린더 제목/ICS 상태 배지 삭제
 - 이벤트 범례 점 크기 고정 및 캘린더 가독성 개선
 
-# 마지막 수정
-- 한비 탄생일 날짜를 2024년 5월 15일로 변경
+
+# 캘린더 공지 전용 페이지 추가
+- /calendar/ 주소 추가
+- 상단 탭과 히어로 제목 없이 캘린더 + UPCOMING만 표시
+- SOOP 일정 공지글 iframe에는 https://hanbi-profile.pages.dev/calendar/ 사용 권장
