@@ -1146,6 +1146,306 @@
       background: #6ba8e8 !important;
     }
 
+  
+    /* requested polish v2 */
+    .profile-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .profile-card {
+      min-height: 96px !important;
+    }
+
+    .profile-card.split-card {
+      grid-column: auto !important;
+      min-height: 96px !important;
+    }
+
+    .split-card {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .split-item {
+      padding: 17px 14px !important;
+    }
+
+    .split-big {
+      font-size: 22px !important;
+      white-space: nowrap;
+    }
+
+    .text-center-card {
+      text-align: center !important;
+    }
+
+    .text-center-card strong,
+    .text-center-card span {
+      text-align: center !important;
+    }
+
+    .meme-number {
+      text-align: center;
+      font-size: 38px !important;
+      color: #43addc !important;
+      margin-bottom: 4px !important;
+    }
+
+    .meme-card strong {
+      color: var(--text) !important;
+      font-size: 17px !important;
+      text-align: center !important;
+      margin-bottom: 0 !important;
+    }
+
+    .youtube-card {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 70px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(240,251,255,.74));
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(70,166,215,.10);
+      color: var(--deep);
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      margin-top: 12px;
+    }
+
+    .youtube-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(70,166,215,.16);
+      background: rgba(255,255,255,.92);
+    }
+
+    .youtube-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 8px 18px rgba(255,107,107,.20);
+    }
+
+    .broadcast-info-grid .info {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      min-height: 96px !important;
+      padding: 17px 18px !important;
+      border-radius: 22px !important;
+      background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(240,251,255,.68)) !important;
+      border: 1px solid var(--line) !important;
+      overflow: hidden;
+    }
+
+    .broadcast-info-grid .label {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.01em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(126,205,242,.22);
+    }
+
+    .broadcast-info-grid .value {
+      color: var(--text);
+      font-size: 21px;
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+      font-weight: 950;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 720px) {
+      .profile-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .profile-card.split-card {
+        grid-column: 1 / -1 !important;
+      }
+      .split-card {
+        grid-template-columns: 1fr !important;
+      }
+      .split-item + .split-item {
+        border-left: 0 !important;
+        border-top: 1px solid var(--line) !important;
+      }
+    }
+
+  
+    .schedule-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 2px 0 18px;
+    }
+
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 8px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(126,205,242,.32);
+      box-shadow: 0 8px 20px rgba(70,166,215,.08);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .schedule-badge small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .schedule-badge strong {
+      font-size: 16px;
+    }
+
+    .schedule-badge .live {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffe9ad;
+      color: #c49328;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .schedule-badge .off {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #eee;
+      color: #888;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .event-chip {
+      cursor: pointer;
+    }
+
+    .event-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(55, 50, 45, .38);
+      backdrop-filter: blur(7px);
+    }
+
+    .event-modal.active {
+      display: flex;
+    }
+
+    .event-modal-card {
+      width: min(420px, calc(100% - 20px));
+      border-radius: 24px;
+      background: rgba(255, 250, 243, .96);
+      box-shadow: 0 24px 70px rgba(0,0,0,.20);
+      padding: 26px 28px;
+      color: #2f2b28;
+      animation: modalIn .18s ease-out;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(8px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .event-modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .event-modal-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #7c736b;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .event-modal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #60c5ee;
+    }
+
+    .event-modal-dot.broadcast { background: #56c39b; }
+    .event-modal-dot.break { background: #74777d; }
+    .event-modal-dot.event { background: #ff6f9b; }
+    .event-modal-dot.other { background: #6ca7e8; }
+
+    .event-close {
+      border: 0;
+      background: transparent;
+      color: #8a8178;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .event-modal-title {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.25;
+      letter-spacing: -0.05em;
+      font-weight: 950;
+      color: #28231f;
+    }
+
+    .event-modal-date,
+    .event-modal-time {
+      color: #766d64;
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .event-modal-tag {
+      display: inline-flex;
+      margin-top: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.06);
+      color: #6f6860;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 720px) {
+      .schedule-badge {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1227,6 +1527,24 @@
       </div>
     </section>
 
+
+    <div class="event-modal" id="eventModal" aria-hidden="true">
+      <div class="event-modal-card" role="dialog" aria-modal="true">
+        <div class="event-modal-top">
+          <div class="event-modal-type">
+            <span class="event-modal-dot" id="modalDot"></span>
+            <span id="modalType">일정</span>
+          </div>
+          <button class="event-close" id="eventClose" type="button" aria-label="닫기">×</button>
+        </div>
+        <h3 class="event-modal-title" id="modalTitle">일정 제목</h3>
+        <div class="event-modal-date" id="modalDate">날짜</div>
+        <div class="event-modal-time" id="modalTime">시간</div>
+        <div class="event-modal-tag" id="modalTag">태그</div>
+      </div>
+    </div>
+
+
     <script>
       const API_URL = "/api/calendar";
       const calendarGrid = document.getElementById("calendarGrid");
@@ -1259,6 +1577,47 @@
           other: "기타"
         }[type] || "기타";
       }
+
+      function formatKoreanDate(iso) {
+        const d = new Date(iso);
+        const days = ["일", "월", "화", "수", "목", "금", "토"];
+        return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
+      }
+
+      function formatTimeOnly(iso) {
+        const d = new Date(iso);
+        if (d.getHours() === 0 && d.getMinutes() === 0) return "";
+        return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      }
+
+      function openEventModal(ev) {
+        const type = eventType(ev.summary);
+        const time = formatTimeOnly(ev.start);
+        document.getElementById("modalTitle").textContent = ev.summary;
+        document.getElementById("modalDate").textContent = formatKoreanDate(ev.start);
+        document.getElementById("modalTime").textContent = time || "종일";
+        document.getElementById("modalType").textContent = typeLabel(type);
+        document.getElementById("modalTag").textContent = typeLabel(type);
+        const dot = document.getElementById("modalDot");
+        dot.className = `event-modal-dot ${type}`;
+        const modal = document.getElementById("eventModal");
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeEventModal() {
+        const modal = document.getElementById("eventModal");
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      document.getElementById("eventClose").addEventListener("click", closeEventModal);
+      document.getElementById("eventModal").addEventListener("click", (e) => {
+        if (e.target.id === "eventModal") closeEventModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeEventModal();
+      });
 
       function formatDateTime(iso) {
         const d = new Date(iso);
@@ -1343,6 +1702,10 @@
             chip.innerHTML = isMidnight
               ? `<span class="event-title">${ev.summary}</span>`
               : `<span class="event-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span><span class="event-title">${ev.summary}</span>`;
+            chip.addEventListener("click", (e) => {
+              e.stopPropagation();
+              openEventModal(ev);
+            });
             div.appendChild(chip);
           });
 
@@ -1376,6 +1739,8 @@
             </div>
             <div class="upcoming-tag">${typeLabel(type)}</div>
           `;
+          card.style.cursor = "pointer";
+          card.addEventListener("click", () => openEventModal(ev));
           upcomingList.appendChild(card);
         });
       }
