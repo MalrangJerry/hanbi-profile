@@ -124,3 +124,8 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 # 멀티데이 일정 표시 개선
 - ↘/→/↗ 기호 대신 시작/진행중/종료 텍스트 배지로 변경
 - 범례에 '여러 날 일정' 설명 추가
+
+# 팬심 버튼 추가
+- assets/fancim-icon.png 추가
+- 프로필 탭에 한비 팬심 바로가기 버튼 추가
+- 링크: https://fancim.me/celeb/profile.aspx?url=879628
