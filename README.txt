@@ -129,3 +129,6 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 - assets/fancim-icon.png 추가
 - 프로필 탭에 한비 팬심 바로가기 버튼 추가
 - 링크: https://fancim.me/celeb/profile.aspx?url=879628
+
+# 생일 재수정
+- 팬심 버튼 추가 버전에서 한비 탄생일을 2024년 5월 15일로 재수정
