@@ -1579,6 +1579,63 @@
       letter-spacing: -0.04em !important;
     }
 
+  
+    /* multi-day readable labels */
+    .multi-legend {
+      gap: 5px !important;
+    }
+
+    .multi-legend-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: rgba(67, 173, 220, .13);
+      color: var(--deep);
+      font-size: 10px;
+      font-weight: 950;
+      line-height: 1;
+      border: 1px solid rgba(67, 173, 220, .18);
+    }
+
+    .event-chip.multi-day {
+      display: flex !important;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .event-stage {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      height: 16px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.32);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .event-chip.multi-day .event-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .multi-legend {
+        display: none !important;
+      }
+
+      .event-stage {
+        font-size: 8px;
+        padding: 0 4px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1624,6 +1681,7 @@
           <span class="legend-item"><span class="legend-dot break"></span>휴방</span>
           <span class="legend-item featured-event"><span class="legend-dot event"></span>이벤트</span>
           <span class="legend-item"><span class="legend-dot other"></span>기타</span>
+          <span class="legend-item multi-legend"><span class="multi-legend-badge">시작</span><span class="multi-legend-badge">진행중</span><span class="multi-legend-badge">종료</span>여러 날 일정</span>
         </div>
 
         <div class="calendar-week">
@@ -1732,13 +1790,17 @@
       }
 
       function eventLabelForDay(ev, key) {
+        return ev.summary;
+      }
+
+      function eventStageForDay(ev, key) {
         const keys = eventDayKeys(ev);
-        if (keys.length <= 1) return ev.summary;
+        if (keys.length <= 1) return "";
         const first = keys[0];
         const last = keys[keys.length - 1];
-        if (key === first) return `↘ ${ev.summary}`;
-        if (key === last) return `↗ ${ev.summary}`;
-        return `→ ${ev.summary}`;
+        if (key === first) return "시작";
+        if (key === last) return "종료";
+        return "진행중";
       }
 
       function eventType(summary = "") {
@@ -1880,11 +1942,12 @@
             const isMidnight = d.getHours() === 0 && d.getMinutes() === 0;
             const multiDay = isMultiDayEvent(ev);
             const label = eventLabelForDay(ev, key);
-            chip.title = multiDay ? `${ev.summary} · 여러 날 일정` : ev.summary;
+            const stage = eventStageForDay(ev, key);
+            chip.title = multiDay ? `${ev.summary} · ${stage}` : ev.summary;
             chip.classList.toggle("no-time", isMidnight || multiDay);
             chip.classList.toggle("multi-day", multiDay);
             chip.innerHTML = (isMidnight || multiDay)
-              ? `<span class="event-title">${label}</span>`
+              ? `${stage ? `<span class="event-stage">${stage}</span>` : ""}<span class="event-title">${label}</span>`
               : `<span class="event-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span><span class="event-title">${label}</span>`;
             chip.addEventListener("click", (e) => {
               e.stopPropagation();

@@ -119,3 +119,8 @@ https://calendar.google.com/calendar/ical/imhanbily%40gmail.com/public/basic.ics
 - /calendar/ 전용 페이지 최대 폭을 1180px로 확장
 - 일정 칩 폰트/패딩 조정으로 텍스트 잘림 완화
 - SOOP iframe width는 1100~1180 권장
+
+
+# 멀티데이 일정 표시 개선
+- ↘/→/↗ 기호 대신 시작/진행중/종료 텍스트 배지로 변경
+- 범례에 '여러 날 일정' 설명 추가
